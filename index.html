@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      img {
+        width:300px;
+        heigth:300px;
+      }
+      #pictures{
+        width:903px;
+        height:1350px;
+        border-left: solid 1px black;
+        border-top: solid 1px black;
+        font-size: 0px;
+        margin: auto;
+      }
+      div.picture{
+        width: 300px;
+        height: 450px;
+        border-right: solid 1px black;
+        border-bottom: solid 1px black;
+        float: left;
+        background-color: red;
+      }
+      div.favorateanimal{
+        width: 300px;
+        height: 150px;
+        background-color: white;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      body{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>choose your favorate fantasy animal</h1>
+    <div id="pictures">
+
+    </div>
+  </body>
+  <script>
+    pictures = document.getElementById("pictures");
+    createHolders();
+    createImage();
+
+    function createHolders(){
+      for (var i = 0; i < 9; i++) {
+        Holder = document.createElement("div");
+        Holder.className = "picture";
+        Holder.id = "picture"+i;
+        pictures.appendChild(Holder);
+      }
+    }
+    function createImage(){
+        Holders = document.getElementsByClassName("picture");
+        for (var i = 0; i < 9 ; i++) {
+          favorateanimal = document.createElement("div")
+          favorateanimal.className = "favorateanimal";
+          favorateanimal.id = "favorate_" + (i+1);
+          animalpicture = document.createElement("img");
+          animalpicture.src = "img/image" + (i+1) + ".jpg";
+          animalpicture.id = i+1;
+          animalpicture.addEventListener("click", function(){
+            makefavorate(this.id);
+          });
+          Holders[i].appendChild(favorateanimal);
+          Holders[i].appendChild(animalpicture);
+        }
+    }
+
+    function makefavorate(id){
+      console.log("favorate is " + id);
+      notfavorate = document.getElementsByClassName("favorateanimal");
+      for (var i = 0; i < 9; i++) {
+        notfavorate[i].style.backgroundImage = "none"
+      }
+      favorateanimal = document.getElementById("favorate_" + id);
+      favorateanimal.style.backgroundImage = "url('img/heart.png')";
+    }
+  </script>
+</html>
